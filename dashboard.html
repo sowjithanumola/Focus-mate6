@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FocusMate — Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="brand">FocusMate <span class="muted small">— offline</span></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div id="greet" class="tag"></div>
+        <button id="exportBtn" class="btn">Export JSON</button>
+        <button id="importBtn" class="btn secondary">Import JSON</button>
+        <button id="logout" class="cta small">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="card panel" style="min-width:320px;max-width:520px;">
+      <h2>Log today's work</h2>
+      <label>Date</label>
+      <input type="date" id="entryDate" />
+
+      <label>Subject / Topic</label>
+      <input id="subject" placeholder="e.g., Calculus — Integrals" />
+
+      <label>Duration (minutes)</label>
+      <input id="minutes" type="number" min="1" placeholder="90" />
+
+      <label>Focus level</label>
+      <select id="focus">
+        <option>Focused</option>
+        <option>Okay</option>
+        <option>Distracted</option>
+      </select>
+
+      <label>Remarks</label>
+      <textarea id="notes" rows="4" placeholder="What went well? What to improve?"></textarea>
+
+      <div style="display:flex;gap:10px;margin-top:10px;">
+        <button id="saveBtn" class="cta">Save entry</button>
+        <button id="clearBtn" class="btn secondary">Clear fields</button>
+      </div>
+
+      <div style="margin-top:12px;">
+        <button id="deleteToday" class="btn">Delete today's entry</button>
+      </div>
+    </section>
+
+    <section style="flex:1">
+      <div class="card panel">
+        <h3>Monthly progress</h3>
+        <canvas id="chart" style="width:100%;height:220px"></canvas>
+        <div style="margin-top:8px;">
+          <small class="muted">Blue = duration, Green = focus score</small>
+        </div>
+      </div>
+
+      <div class="card panel" style="margin-top:12px;">
+        <h3>Entries</h3>
+        <div id="entriesList" class="entries-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <input type="file" id="fileInput" accept=".json" style="display:none" />
+
+  <script src="app.js"></script>
+</body>
+</html>
