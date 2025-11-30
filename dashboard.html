@@ -3,31 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>FocusMate Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <header class="topbar">
-    <h1>FocusMate Dashboard</h1>
-  </header>
+<header class="topbar">
+  <h1>FocusMate Dashboard</h1>
+</header>
 
-  <section class="card-container">
-    <div class="card">
-      <h3>Daily Progress</h3>
-      <p>Track your tasks and productivity.</p>
-    </div>
+<section class="main-grid">
 
-    <div class="card">
-      <h3>Focus Sessions</h3>
-      <p>Start a new session now.</p>
-    </div>
+  <!-- LEFT: ENTER DATA -->
+  <div class="box">
+    <h2>Add Your Daily Progress</h2>
+    <textarea id="dailyText" placeholder="What did you complete today?"></textarea>
+    <button onclick="saveProgress()">Save Progress</button>
+  </div>
 
-    <div class="card">
-      <h3>Stats</h3>
-      <p>View your performance chart.</p>
-    </div>
-  </section>
+  <!-- RIGHT: AI RESPONSE -->
+  <div class="box">
+    <h2>Ask AI Mentor</h2>
+    <input id="aiInput" placeholder="Ask something...">
+    <button onclick="askAI()">Ask</button>
+    <p id="aiOutput"></p>
+  </div>
 
+  <!-- FULL WIDTH: GRAPH -->
+  <div class="box full">
+    <h2>Your Productivity Graph</h2>
+    <canvas id="productivityChart"></canvas>
+  </div>
+
+</section>
+
+<script src="app.js"></script>
 </body>
 </html>
