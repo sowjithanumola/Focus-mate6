@@ -1,61 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FocusMate — Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="center-card card">
-    <h1>Welcome to FocusMate</h1>
-    <p class="muted">Offline — data saved to your browser (LocalStorage).</p>
+  <div class="login-container">
+    <h2>Welcome Back</h2>
 
-    <label for="username">Your name</label>
-    <input id="username" placeholder="e.g., Aarav" />
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-    <div style="display:flex;gap:10px;margin-top:14px;">
-      <button id="startBtn" class="cta">Start</button>
-      <button id="demoBtn" class="btn secondary">Try Demo</button>
-    </div>
+    <button onclick="login()">Login</button>
 
-    <p class="tag">No account, no backend — just your browser.</p>
-  </main>
+    <p class="note">Not a member? <a href="#">Sign up</a></p>
+  </div>
 
-  <script>
-    const startBtn = document.getElementById('startBtn');
-    const demoBtn = document.getElementById('demoBtn');
-    const usernameInput = document.getElementById('username');
-
-    startBtn.addEventListener('click', () => {
-      const name = usernameInput.value.trim();
-      if (!name) { alert('Please enter a name'); return; }
-      localStorage.setItem('fm_username', name);
-      // create empty entries structure if not present
-      if (!localStorage.getItem('fm_entries')) localStorage.setItem('fm_entries', JSON.stringify({}));
-      location.href = 'dashboard.html';
-    });
-
-    demoBtn.addEventListener('click', () => {
-      // populate demo data and go to dashboard
-      localStorage.setItem('fm_username', 'Demo Learner');
-      const now = new Date();
-      const entries = {};
-      for (let i=1;i<=20;i++){
-        const d = new Date(now.getFullYear(), now.getMonth(), i);
-        const key = d.toISOString().slice(0,10);
-        entries[key] = {subject: ['Math','Physics','Chemistry','History'][i%4], minutes: 60+(i%5)*15, focus: ['Focused','Okay','Distracted'][i%3], notes: 'Demo note ' + i};
-      }
-      localStorage.setItem('fm_entries', JSON.stringify(entries));
-      location.href = 'dashboard.html';
-    });
-
-    // redirect if already logged in
-    if (localStorage.getItem('fm_username')) {
-      // small delay so user sees they are already logged in if they landed here
-      // but we redirect immediately to dashboard
-      location.href = 'dashboard.html';
-    }
-  </script>
+<script src="app.js"></script>
 </body>
 </html>
